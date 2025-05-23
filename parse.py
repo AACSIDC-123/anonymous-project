@@ -1,0 +1,43 @@
+from sys import argv
+import argparse
+
+# Define parameter
+def parse_args():
+    parser = argparse.ArgumentParser(description='VFL')
+    parser.add_argument('--dataset',              type=str,     default='cifar10',       help="dataset")
+    parser.add_argument('--model',                type=str,     default='resnet',        help="model")
+    parser.add_argument('--level',                type=int,     default= 1,              help='level')
+    parser.add_argument('--acti',                 type=str,     default='leakyrelu',     help="acti")
+    parser.add_argument('--attributes',           type=str,     default="gender_race",   help="For attrinf, two attributes should be in format x_y e.g. race_gender")
+    parser.add_argument('--lr',                   type=float,   default=1e-4,            help='lr')
+    parser.add_argument('--batch_size',           type=int,     default=100,             help='batch_size')
+    parser.add_argument('--epochs',               type=int,     default=100,             help='epochs')
+    parser.add_argument('--num_cutlayer',         type=int,     default=1000,            help='num_cutlayer')
+    parser.add_argument('--noise_scale',          type=float,   default=0,               help='noise_scale')
+    parser.add_argument('--number_client',        type=int,     default=2,               help='number_client')
+    parser.add_argument('--device',               type=int,     default='0',             help="device")     
+    parser.add_argument('--mode',                 type=str,     default='sum',           help="mode of VFL training")
+    parser.add_argument('--num_batch',            type=int,     default='500',           help="the num of total training samples")
+    parser.add_argument('--num_overlap',          type=int,     default='100',           help="the num of overlap in each batch")
+    parser.add_argument('--overlap',              type=str,     default='True',          help="overlap")
+    parser.add_argument('--complete_1',           type=str,     default='True',          help="complete_1")
+    parser.add_argument('--complete_2',           type=str,     default='True',          help="complete_2")
+    parser.add_argument('--complete_3',           type=str,     default='True',          help="complete_3")
+    parser.add_argument('--complete_4',           type=str,     default='True',          help="complete_4")
+    parser.add_argument('--nonoverlap1_ratio',    type=float,   default=0.5,             help="nonoverlap1_ratio")
+    parser.add_argument('--R_missing',            type=float,   default=0,               help="missing_ratio")
+    parser.add_argument('--lambda1',              type=float,   default='0',             help="lambda1")
+    parser.add_argument('--lambda2',              type=float,   default='0',             help="lambda2")
+    parser.add_argument('--CVTL1',                type=float,   default='0',             help="CVT_lambda1")
+    parser.add_argument('--CVTL2',                type=float,   default='0',             help="CVT_lambda2")
+    parser.add_argument('--CVTL3',                type=float,   default='0',             help="CVT_lambda3")
+    parser.add_argument('--CVTL4',                type=float,   default='0',             help="CVT_lambda4")
+    parser.add_argument('--CVTL5',                type=float,   default='0',             help="CVT_lambda5")
+    parser.add_argument('--weight_cent',          type=float,   default='1',             help="weight_cent")
+    parser.add_argument('--classes',              type=int,     default='0',             help="number of classes chosen")
+    parser.add_argument('--seed',                 type=int,     default='42',            help="seed")
+    parser.add_argument('--tem',                  type=float,   default='0.1',           help="sharpening temperature")
+
+    return parser.parse_args(argv[1:])
+
+args = parse_args()
